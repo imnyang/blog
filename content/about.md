@@ -1,7 +1,7 @@
 +++
 title = 'About'
 date = 2023-11-01T21:33:51+09:00
-draft = true
+draft = false
 +++
 
 `Hello, World!`

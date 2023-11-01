@@ -1,7 +1,7 @@
 +++
 title = '나는 귀엽다'
 date = 2023-11-01T22:08:03+09:00
-draft = true
+draft = false
 tags=[
     "cute",
 ]
