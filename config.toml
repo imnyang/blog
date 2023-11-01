@@ -72,3 +72,12 @@ series = "series"
 
   [services.twitter]
     disableInlineCSS = true
+
+[params.giscus]
+  repo = 'imnyang/blog'
+  repoId = 'R_kgDOKn4UGA'
+  category = 'General'
+  categoryId = 'DIC_kwDOKn4UGM4CamiY'
+  mapping = 'pathname'
+  theme="dark"
+  lang = 'ko'
