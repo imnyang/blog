@@ -1,5 +1,5 @@
 +++
-title = 'SSH 설치 방법'
+title = 'SSH Key 설정 방법'
 date = 2023-11-07T13:17:55+09:00
 draft = true
 tags = [
