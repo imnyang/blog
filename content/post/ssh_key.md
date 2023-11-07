@@ -9,7 +9,7 @@ tags = [
 +++
 
 SSH를 쓰다보면
-![[Pasted image 20231107132034.png]]
+![SSH Login](<img/ssh_key/Pasted image 20231107132034.png>)
 ~~SSH 안에선 내가 인싸~~
 
 게속해서 들어오는 무파별 접속 세레머니를 받을 수 있습니다!
@@ -49,11 +49,12 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 .ssh 폴더에 가본다면 id_rsa, id_rsa.pub이 생겼습니다.
+![File Explorer](<img/ssh_key/Pasted image 20231107133013.png>)
 
-![[Pasted image 20231107133013.png]]
 >
 > 💡 다른 컴퓨터에서도 로그인하고 싶다고요?
->       간단해요! 그냥 id_rsa을 다른 컴퓨터의 .ssh 폴더에 넣으세요!
+>     
+>     간단해요! 그냥 id_rsa을 다른 컴퓨터의 .ssh 폴더에 넣으세요!
 > 
 ## Host 설정
 이제 Key를 Remote 서버로 옮길 작업을 해봅시다.
@@ -74,7 +75,7 @@ sudo nano /etc/ssh/sshd_config
 ```
 여기선 nano로 예시를 들거에요.
 
-![[Pasted image 20231107134539.png]]
+![SSH Config](<img/ssh_key/Pasted image 20231107134539.png>)
 이 화면에서 Ctrl + W를 눌러주세요
 `PasswordAuthentication yes`를 검색해 주석이 있다면 주석을 삭제하고 `PasswordAuthentication no`로 변경해주세요.
 
@@ -99,7 +100,8 @@ ssh -v -i ~/.ssh/id_rsa 적용_된_유저_이름@호스트
 
 >
 > 💡 서버가 너무 많아서 뭐가 맞는 id_rsa가 뭔지 모르겠다고요?
->       id_rsa의 위치나 이름을 바꿔도 작동합니다!
+>    
+>    id_rsa의 위치나 이름을 바꿔도 작동합니다!
 >   
 
 여기로 이렇게 로그인하면 끝!
