@@ -17,9 +17,9 @@ title = "imnyang의 작업실"
 [params]
   color = 'linen'
 
-  twitter = 'im_se_mir'
+  twitter = 'imnyang_xyz'
   github = 'imnyang'
-  instagram = 'im.se.mir'
+  instagram = 'imnyang.xyz'
 
   avatar = 'me@imnyang.xyz'
   name = 'imnyang'
@@ -79,5 +79,5 @@ series = "series"
   category = 'General'
   categoryId = 'DIC_kwDOKn4UGM4CamiY'
   mapping = 'pathname'
-  theme="dark"
+  theme="noborder_light"
   lang = 'ko'

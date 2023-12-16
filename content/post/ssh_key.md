@@ -1,8 +1,9 @@
 +++
 title = 'SSH Key 설정 방법'
 date = 2023-11-07T13:17:55+09:00
-draft = true
+draft = false
 tags = [
+    "command",
     "SSH",
     "SSH _KEY"
 ]
@@ -51,11 +52,9 @@ The key's randomart image is:
 .ssh 폴더에 가본다면 id_rsa, id_rsa.pub이 생겼습니다.
 ![File Explorer](</img/ssh_key/Pasted image 20231107133013.png>)
 
->
-> 💡 다른 컴퓨터에서도 로그인하고 싶다고요?
->     
->     간단해요! 그냥 id_rsa을 다른 컴퓨터의 .ssh 폴더에 넣으세요!
-> 
+    💡 다른 컴퓨터에서도 로그인하고 싶다고요?
+    간단해요! 그냥 id_rsa을 다른 컴퓨터의 .ssh 폴더에 넣으세요!
+
 ## Host 설정
 이제 Key를 Remote 서버로 옮길 작업을 해봅시다.
 
@@ -98,10 +97,7 @@ ssh -v -i ~/.ssh/id_rsa 적용_된_유저_이름@호스트
 
 ~/.ssh의 경로는 수정할 필요가 있을 수 있어요 윈도우 환경에선 C:\\Users\\사용자_이름\\.ssh 일거에요! 위 사항을 적용해주세요.
 
->
-> 💡 서버가 너무 많아서 뭐가 맞는 id_rsa가 뭔지 모르겠다고요?
->    
->    id_rsa의 위치나 이름을 바꿔도 작동합니다!
->   
+    💡 서버가 너무 많아서 뭐가 맞는 id_rsa가 뭔지 모르겠다고요?
+    id_rsa의 위치나 이름을 바꿔도 작동합니다! 
 
 여기로 이렇게 로그인하면 끝!
