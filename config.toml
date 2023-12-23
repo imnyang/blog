@@ -79,5 +79,5 @@ series = "series"
   category = 'General'
   categoryId = 'DIC_kwDOKn4UGM4CamiY'
   mapping = 'pathname'
-  theme="noborder_light"
+  theme="transparent_dark"
   lang = 'ko'
