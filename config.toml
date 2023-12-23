@@ -3,8 +3,8 @@ baseURL = "https://blog.imnyang.xyz/"
 author = "imnyang"
 copyright = "Copyright © 2023, by imnyang"
 paginate = 5
-languageCode = "en"
-DefaultContentLanguage = "en"
+languageCode = "kr"
+DefaultContentLanguage = "kr"
 enableInlineShortcodes = true
 # prevent build failures when using Hugo's Instagram shortcode due to deprecated Instagram API.
 # See https://github.com/gohugoio/hugo/issues/7228#issuecomment-714490456
