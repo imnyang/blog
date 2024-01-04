@@ -3,13 +3,23 @@ title = 'About'
 date = 2023-11-01T21:33:51+09:00
 draft = false
 +++
+# About
 
-`Hello, World!`
+🇰🇷 South Korea에서 활동중인 아임냥입니다.
+ 
 
-프로그래머 꿈나무 imnyang이라고 합니다.
+Blog : [blog.imnyang.xyz](https://blog.imnyang.xyz)
 
-Hugo Blog 만드려고 세팅하고 뭐 하는게 좀 힘들었네요.
+Email : [me@imnyang.xyz](mailto:me@imnyang.xyz)
 
-그래도 서버리스 블로그 생긴거로 만족!
+Discord : [@imnyang](https://sqlr.kr/kvGE) \* 클릭시 서버로 이동
 
-[Mail](mailto:support@imnyang.xyz)
+Instagram : [@imnyang.xyz](https://instagram.com/imnyang.xyz)
+
+X : [@imnyang_xyz](https://x.com/@imnyang_xyz)
+ 
+
+imnyang의 next_ny64로 만들어진 사이트입니다.
+
+
+© 2023 by imnyang
