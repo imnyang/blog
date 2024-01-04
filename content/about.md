@@ -9,17 +9,10 @@ draft = false
  
 
 Blog : [blog.imnyang.xyz](https://blog.imnyang.xyz)
-
 Email : [me@imnyang.xyz](mailto:me@imnyang.xyz)
-
 Discord : [@imnyang](https://sqlr.kr/kvGE) \* 클릭시 서버로 이동
-
 Instagram : [@imnyang.xyz](https://instagram.com/imnyang.xyz)
-
 X : [@imnyang_xyz](https://x.com/@imnyang_xyz)
- 
-
-imnyang의 next_ny64로 만들어진 사이트입니다.
 
 
 © 2023 by imnyang
