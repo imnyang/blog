@@ -3,8 +3,6 @@ title = 'About'
 date = 2023-11-01T21:33:51+09:00
 draft = false
 +++
-# About
-
 🇰🇷 South Korea에서 활동중인 아임냥입니다.
 
 
