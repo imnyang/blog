@@ -32,5 +32,5 @@ admin"--
 ```
 이러면 해결될 간단한 문제 같다.
 
-![dreamhack-24-1](</img/dreamhack-24/login.png>)
-![dreamhack-24-flag](</img/dreamhack-24/flag.png>)
+![dreamhack-24-1](<./img/login.png>)
+![dreamhack-24-flag](<./img/flag.png>)

@@ -29,7 +29,7 @@ sudo brew services start sudo-touchid
 
     💡 sudo brew services start sudo-touchid를 입력했는데 이런 오류가 발생해요.
     brew install artginzburg/tap/sudo-touchid를 입력했을 때 이미 프로세스가 돌아갈수도 있어요!
-![Fix #1](/img/sudo-touch-id/Fix_1.png)
+![Fix #1](./img/Fix_1.png)
 
 ## Curl로 설치
 

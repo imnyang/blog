@@ -24,4 +24,4 @@ Mac에서 프로그램을 직접 찾아서 설치하기 끔찍하죠
 brew install wget
 ```
 
-![Example](</img/brew-install/1.png>)
+![Example](<./img/1.png>)
