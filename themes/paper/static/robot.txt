@@ -1,7 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://blog.imnynag.xyz/sitemap.xml
-
-Allow: /ads.txt
-Disallow: /tags
-Disallow: /categories
