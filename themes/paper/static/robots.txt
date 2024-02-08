@@ -1,6 +1,6 @@
 User-agent: *
-Disallow:
-Sitemap: https://blog.imnynag.xyz/sitemap.xml
+Allow: *
+Sitemap: https://blog.imnyang.xyz/sitemap.xml
 
 Allow: /ads.txt
 Disallow: /tags
