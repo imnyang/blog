@@ -2,7 +2,7 @@
 title: Proxmox VE 설치하기!
 published: 2024-06-04
 description: 'Proxmox VE로 간단하게 서버 가상머신 관리하는 방법을 알아보자'
-image: 'img/preview.png'
+image: './img/preview.png'
 tags: ["Linux", "Server", "Proxmox"]
 category: 'Guide'
 draft: false 
@@ -25,55 +25,55 @@ Proxmox와 기능도 유사하고 거의 똑같았습니다.
 
 ## Proxmox VE 다운로드 받기
 [https://www.proxmox.com/en/downloads](여기에서) 링크를 통해 들어가면
-![Proxmox VE 다운로드](<./img/proxmox-page.png>)
+![Proxmox VE 다운로드](./img/proxmox-page.png)
 맨 위에 있는 Proxmox V(irtual) E(nvironment) 버전을 다운로드해주세요.
 
 이후 [Rufus](https://rufus.ie), Ventoy 등을 통해 부팅해줍시다.
 
 ## Proxmox VE 설치하기
 Proxmox VE의 Grub으로 접근해주세요.
-![Grub Menu](<./img/cli/pve-grub-menu.png>)
+![Grub Menu](./img/cli/pve-grub-menu.png)
 이후 간단하게 설치를 위해 Install Proxmox VE (Graphical)을 선택해주세요.
 
-![Eula](<./img/cli/pve-eula.png>)
+![Eula](./img/cli/pve-eula.png)
 Proxmox의 약관을 동의해주세요.
 
-![Disk Select](<./img/cli/pve-disk.png>)
+![Disk Select](./img/cli/pve-disk.png)
 Proxmox에 할당할 디스크를 선택해주세요. 
 
-![Location Select](<./img/cli/pve-select-location.png>)
+![Location Select](./img/cli/pve-select-location.png)
 여긴 한국이니 South Korea랑 Asia/Seoul로 시간대를 설정해주세요
 
-![Password and Email Setting](<./img/cli/pve-pw-email.png>)
+![Password and Email Setting](./img/cli/pve-pw-email.png)
 Proxmox에서 비밀번호와 Email을 받을 주소를 적어줍시다.
 
-![Network](<./img/cli/pve-network.png>)
+![Network](./img/cli/pve-network.png)
 원하는 Hostname을 적어주세요.
 IP 주소는 DCHP에서 할당된 이미 설정된 값이나 수동으로 설정해주세요.
 
-![Install Confirm](<./img/cli/pve-install.png>)
+![Install Confirm](./img/cli/pve-install.png)
 설치를 눌러주세요.
 
-![Console](<./img/cli/pve-console.png>)
+![Console](./img/cli/pve-console.png)
 
 설치를 끝내고 나면 위와 같이 웹 콘솔에 접근 후 세팅을 이어나가라고 합니다.
 
 ## Proxmox VE 설정
 https://[PVE ip 주소]:8006 으로 접속해주세요.
-![Proxmox Web Panel](<./img/web/pve-web-login.png>)
+![Proxmox Web Panel](./img/web/pve-web-login.png)
 
 ### apt update 문제 해결
-![Update Error](<./img/web/pve-web-update.png>)
+![Update Error](./img/web/pve-web-update.png)
 이럴땐 `Datacenter/pve/Update/Repositories`로 들어가주세요
 
-![Repo List](<./img/web/pve-web-repo.png>)
+![Repo List](./img/web/pve-web-repo.png)
 여기선 `/etc/apt/sources.list/ceph.list`와 `/etc/apt/sources.list/pve-enterprise.list`를 비활성화 해주세요.
 
 이후 Add 버튼을 눌러
-![No Subscription](<./img/web/pve-web-repo-add.png>)
+![No Subscription](./img/web/pve-web-repo-add.png)
 
 최종적으로 이런 Repositories를 가지게 됩니다.
-![Repo List](<./img/web/pve-web-repo-list.png>)
+![Repo List](./img/web/pve-web-repo-list.png)
 
 ### Local / Local LVM 통합하기
 
@@ -94,10 +94,10 @@ resize2fs -p /dev/pve/root
 
 이후 `Datacenter/Storage`에서 local-lvm을 제거합니다.
 
-![Set disk content](<./img/web/pve-web-disk.png>)
+![Set disk content](./img/web/pve-web-disk.png)
 그리고 Local에서 Content를 모두 할당합니다.
 
-![Local Disk Usage](<./img/web/pve-web-disk-usage.png>)
+![Local Disk Usage](./img/web/pve-web-disk-usage.png)
 이후 디스크의 할당이 전체로 잡힌 것을 확인할 수 있습니다.
 
 ### 로그인시 뜨는 팝업 제거

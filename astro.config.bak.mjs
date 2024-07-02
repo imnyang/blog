@@ -1,22 +1,16 @@
 import tailwind from "@astrojs/tailwind"
 import Compress from "astro-compress"
 import icon from "astro-icon"
-import { defineConfig } from "astro/config"
+import { defineConfig, passthroughImageService } from "astro/config"
 import Color from "colorjs.io"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeKatex from "rehype-katex"
 import rehypeSlug from "rehype-slug"
 import remarkMath from "remark-math"
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs"
-import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs"
-import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs"
-import remarkDirective from "remark-directive" /* Handle directives */
-import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
-import rehypeComponents from "rehype-components"; /* Render the custom directive content */
 import svelte from "@astrojs/svelte"
 import swup from '@swup/astro';
 import sitemap from '@astrojs/sitemap';
-import {parseDirectiveNode} from "./src/plugins/remark-directive-rehype.js";
 
 const oklchToHex = (str) => {
   const DEFAULT_HUE = 250
@@ -30,6 +24,9 @@ const oklchToHex = (str) => {
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    service: passthroughImageService()
+  },
   site: "https://blog.imnyang.xyz/",
   base: "/",
   trailingSlash: "always",
@@ -60,20 +57,10 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    remarkPlugins: [remarkMath, remarkReadingTime, remarkGithubAdmonitionsToDirectives, remarkDirective, parseDirectiveNode],
+    remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
       rehypeKatex,
       rehypeSlug,
-      [rehypeComponents, {
-        components: {
-          github: GithubCardComponent,
-          note: (x, y) => AdmonitionComponent(x, y, "note"),
-          tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-          important: (x, y) => AdmonitionComponent(x, y, "important"),
-          caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-          warning: (x, y) => AdmonitionComponent(x, y, "warning"),
-        },
-      }],
       [
         rehypeAutolinkHeadings,
         {
