@@ -9,7 +9,7 @@ draft: false
 ---
 
 SSH를 쓰다보면
-![SSH Login](<./img/Pasted image 20231107132034.png>)
+![SSH Login](./img/Pasted image 20231107132034.png)
 ~~SSH 안에선 내가 인싸~~
 
 게속해서 들어오는 무파별 접속 세레머니를 받을 수 있습니다!
@@ -49,7 +49,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 .ssh 폴더에 가본다면 id_rsa, id_rsa.pub이 생겼습니다.
-![File Explorer](<./img/Pasted image 20231107133013.png>)
+![File Explorer](./img/Pasted image 20231107133013.png)
 
     💡 다른 컴퓨터에서도 로그인하고 싶다고요?
     간단해요! 그냥 id_rsa을 다른 컴퓨터의 .ssh 폴더에 넣으세요!
@@ -73,7 +73,7 @@ sudo nano /etc/ssh/sshd_config
 ```
 여기선 nano로 예시를 들거에요.
 
-![SSH Config](<./img/Pasted image 20231107134539.png>)
+![SSH Config](./img/Pasted image 20231107134539.png)
 이 화면에서 Ctrl + W를 눌러주세요
 `PasswordAuthentication yes`를 검색해 주석이 있다면 주석을 삭제하고 `PasswordAuthentication no`로 변경해주세요.
 

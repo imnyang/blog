@@ -2,7 +2,7 @@
 title: MacOS(Linux)에서 Brew 설치하기
 published: 2023-12-16
 description: '맥에서의 패키지 관리자 HomeBrew!'
-image: 'img/preview.png'
+image: './img/preview.png'
 tags: [with_Brew, Mac, Linux]
 category: 'Guide'
 draft: false 
@@ -28,4 +28,4 @@ Mac에서 프로그램을 직접 찾아서 설치하기 끔찍하죠
 brew install wget
 ```
 
-![install brew uwu](<./img/1.png>)
+![install brew uwu](./img/1.png)
