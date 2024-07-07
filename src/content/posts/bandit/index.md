@@ -189,11 +189,162 @@ bandit8@bandit:~$ cat data.txt | sort | uniq -c
 ```bash
 bandit9@bandit:~$ strings data.txt | grep "^=*[[:print:]]"
 ...
-========== FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+========== [passwd]
 ...
 ```
 
 `grep "^=*[[:print:]]"` : 찾아보니 =으로 시작하고 사람이 읽을 수 있는 것으로 grep을 하고 싶으면 이렇게 쓰면 된다고 한다.
 
+## Level 10 -> 11
+`ssh bandit10@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit10@bandit:~$ cat data.txt | base64 --decode
+The password is [passwd]
+```
+
+## Level 11 -> 12
+`ssh bandit11@bandit.labs.overthewire.org -p 2220`
+
+```bash 
+bandit11@bandit:~$ cat data.txt | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'
+The password is [passwd]
+```
+[위키피디아 Rot13 문서를 보면 이해하기 쉽다.](https://en.wikipedia.org/wiki/Rot13)
+
+## Level 12 -> 13
+`ssh bandit12@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit12@bandit:~$ mktemp -d
+/tmp/tmp.APIhkKxwXA
+bandit12@bandit:~$ cd /tmp/tmp.APIhkKxwXA
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ cp ~/data.txt .
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ xxd -r data.txt data.bin
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ chmod +x decompress.sh
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ ./decompress.sh
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ cd extracted/
+bandit12@bandit:/tmp/tmp.APIhkKxwXA/extracted$ cat data8.bin
+The password is [passwd]
+```
+
+<details>
+<summary>Decompress.sh</summary>
+
+```js
+#!/bin/bash
+
+input_file="data.bin"
+
+while true; do
+file_type=$(file "$input_file")
+echo "Processing: $file_type"
+
+    if echo "$file_type" | grep -q 'gzip compressed data'; then
+        mv "$input_file" "$input_file.gz"
+        gunzip "$input_file.gz"
+        input_file="${input_file%.gz}"
+        echo "Decompressed with gzip: $input_file"
+    elif echo "$file_type" | grep -q 'bzip2 compressed data'; then
+        mv "$input_file" "$input_file.bz2"
+        bunzip2 "$input_file.bz2"
+        input_file="${input_file%.bz2}"
+        echo "Decompressed with bzip2: $input_file"
+    elif echo "$file_type" | grep -q 'XZ compressed data'; then
+        mv "$input_file" "$input_file.xz"
+        unxz "$input_file.xz"
+        input_file="${input_file%.xz}"
+        echo "Decompressed with xz: $input_file"
+    elif echo "$file_type" | grep -q 'POSIX tar archive'; then
+        # Create a directory to extract tar contents
+        mkdir -p extracted
+        tar -xf "$input_file" -C extracted
+        rm "$input_file"
+        # Assume the next file to process is the first file in the tar archive
+        input_file=$(find extracted -type f | head -1)
+        echo "Extracted tar archive: $input_file"
+    else
+        echo "No more compression detected or unsupported format."
+        break
+    fi
+done
+```
+</details>
+
+## Level 13 -> 14
+`ssh bandit13@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost -p 2220
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+[passwd]
+```
+
+## Level 14 -> 15
+`ssh bandit14@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit14@bandit:~$ nc localhost 30000
+[level 14 passwd]
+Correct!
+[level 15 passwd]
+```
+
+## Level 15 -> 16
+`ssh bandit15@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit15@bandit:~$ ncat --ssl localhost 30001
+[level 15 passwd]
+Correct!
+[level 16 passwd]
+```
+
+특이하게 nc로 하면 작동 안하고 ssl 쓰려면 ncat을 써야하네요.
+
+## Level 16 -> 17
+`ssh bandit16@bandit.labs.overthewire.org -p 2220`
+
+```bash 
+bandit16@bandit:~$ nmap localhost -p 31000-32000
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-07 01:44 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00018s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+bandit16@bandit:~$ ncat --ssl localhost 31790
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+-----END RSA PRIVATE KEY-----
+```
+도저히 nmap으로 정보 얻는건 오래걸려서 그냥 저기 있는 포트 5개 대입해 보니까 접속이 됬다.
+
+## Level 17 -> 18
+`ssh -i bandit17.key bandit17@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+< FtePUTiLiwPzjIFw2T7o57oBS4zUvPpg
+---
+> [passwd]
+```
+
+## Level 17 -> 18
+`ssh bandit18@bandit.labs.overthewire.org -p 2220`
+
+```bash
+ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+[passwd]
+```
+
+
 ## Last Update
 2024.07.06에 마지막으로 업데이트 되었으며 bandit9까지 풀이되었습니다.
+2024.07.07에 마지막으로 업데이트 되었으며 bandit18까지 풀이되었습니다.
