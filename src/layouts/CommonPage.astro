@@ -1,0 +1,61 @@
+---
+import type { MarkdownHeading } from 'astro'
+import PageInfo from '@/pure/components/pages/PageInfo.astro'
+
+import { BackToTop, TOC } from 'astro-pure/components/pages'
+import { Button } from 'astro-pure/user'
+import { cn } from 'astro-pure/utils'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import config from '@/site-config'
+
+interface Props {
+  title: string
+  headings?: MarkdownHeading[]
+  info?:
+    | string
+    | {
+        slug: string
+        hideComment?: boolean
+      }
+}
+
+const { title, headings, info, ...props } = Astro.props
+---
+
+<PageLayout meta={{ title }} {...props}>
+  <Button title='뒤로' href='/' style='back' />
+  <main class='mt-6 items-start gap-x-10 md:flex'>
+    {
+      !!headings?.length && (
+        <TOC
+          class='animate top-24 z-10 min-w-48 basis-60 max-md:hidden md:sticky md:order-2'
+          {headings}
+        />
+      )
+    }
+
+    <article class='min-w-0 grow'>
+      <div id='content-header' class='animate'>
+        <h1 class='text-2xl font-medium sm:mb-2 sm:text-3xl'>
+          {title}
+        </h1>
+      </div>
+      <div
+        id='content'
+        class={cn('max-w-none animate mt-8 md:min-w-[45ch]', config.integ.typography.class)}
+      >
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <div class='mt-6 items-start gap-x-10 md:flex'>
+    <div class='mt-8 flex-1 text-muted-foreground md:min-w-[50ch]'>
+      <slot name='bottom' />
+    </div>
+    <div class='min-w-48 basis-60'>
+      <slot name='bottom-sidebar' />
+    </div>
+  </div>
+  <BackToTop header='content-header' content='content' />
+</PageLayout>

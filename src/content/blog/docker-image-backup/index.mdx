@@ -1,0 +1,67 @@
+---
+title: 'Docker Image 백업 & 불러오기, Container를 Image로 바꾸기'
+description: Docker Image 백업과 불러오기
+publishDate: 2025-01-09
+tags:
+  - docker
+heroImage:
+    src: ./hero.webp
+    color: '#1c69e9'
+---
+
+# Docker Image 백업 & 불러오기
+Docker의 Image만 백업하게 되는 명령어입니다.
+Container의 변경사항은 백업하지 않습니다.
+
+## Docker Save 저장하기
+
+```bash
+docker save -o [file.tar] [image:tag]
+```
+
+## Docker Load 불러오기
+
+```bash
+docker load -i [file.tar]
+```
+
+<Aside>
+    아래의 export와 import의 기능을 save와 load와 혼용해서 사용하지마세요!!
+    두 명령어가 호환되지 않습니다.
+</Aside>
+
+
+# Docker Container -> Image
+Container를 Image로 바꾸는 방법입니다.
+
+## 방법 1
+### Docker Export 저장하기
+
+```bash
+docker export [container_id] > [file.tar]
+```
+
+### Docker Import 불러오기
+
+```bash
+docker import [file.tar] [image_name]
+```
+
+## 방법 2
+### Docker Commit 변경사항 저장하기
+
+```bash
+docker commit [container_id] [image_name]
+```
+
+### Docker Save 저장하기
+
+```bash
+docker save -o [file.tar] [image_name]
+```
+
+### Docker Load 불러오기
+
+```bash
+docker load -i [file.tar]
+```

@@ -1,0 +1,24 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "compilerOptions": {
+    "declaration": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "paths": {
+      "@/pure/*": ["packages/pure/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/components/*": ["src/components/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/utils": ["src/utils/index.ts"],
+      "@/utils/*": ["src/utils/*"],
+      "@/plugins/*": ["src/plugins/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/types": ["src/types/index.ts"],
+      "@/site-config": ["src/site.config.ts"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", "public/scripts/*", "test/*"]
+}

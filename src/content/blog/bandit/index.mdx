@@ -1,0 +1,348 @@
+---
+title: 'Bandit 풀이'
+description: Bandit의 풀이가 담겨있습니다.
+publishDate: 2024-07-06
+tags:
+  - hack
+---
+
+## Level 0
+`ssh bandit1@bandit.labs.overthewire.org -p 2220`
+
+## Level 0 -> 1
+
+```bash
+bandit0@bandit:~$ cat readme
+Congratulations on your first steps into the bandit game!!
+Please make sure you have read the rules at https://overthewire.org/rules/
+If you are following a course, workshop, walthrough or other educational activity,
+please inform the instructor about the rules as well and encourage them to
+contribute to the OverTheWire community so we can keep these games free!
+
+The password you are looking for is: [passwd]
+
+```
+
+## Level 1 -> 2
+
+`ssh bandit1@bandit.labs.overthewire.org -p 2220`
+```bash
+bandit1@bandit:~$ cat ./-
+[passwd]
+```
+
+## Level 2 -> 3
+`ssh bandit2@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit2@bandit:~$ cat spaces\ in\ this\ filename
+[passwd]
+```
+
+## Level 3 -> 4
+`ssh bandit3@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit3@bandit:~$ cd inhere/
+bandit3@bandit:~/inhere$ ls
+bandit3@bandit:~/inhere$ ls -al
+total 12
+drwxr-xr-x 2 root    root    4096 Jun 20 04:07 .
+drwxr-xr-x 3 root    root    4096 Jun 20 04:07 ..
+-rw-r----- 1 bandit4 bandit3   33 Jun 20 04:07 ...Hiding-From-You
+bandit3@bandit:~/inhere$ cat ...Hiding-From-You
+[passwd]
+```
+
+## Level 4 -> 5
+`ssh bandit4@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ ls -al
+total 48
+drwxr-xr-x 2 root    root    4096 Jun 20 04:07 .
+drwxr-xr-x 3 root    root    4096 Jun 20 04:07 ..
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file00
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file01
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file02
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file03
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file04
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file05
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file06
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file07
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file08
+-rw-r----- 1 bandit5 bandit4   33 Jun 20 04:07 -file09
+
+bandit4@bandit:~/inhere$ find ./ -type f | xargs tail -n +1
+
+==> ./-file00 <==
+�Z0�y�B�i���A��n���O6K�5
+
+==> ./-file01 <==
+��B!:�Å(�kkq��I zt���*�ɔ�tPc�9
+
+==> ./-file02 <==
+ުk|)둖��?G  ��3p�
+
+==> ./-file03 <==
+,�W�1��_2LC[�F�N��6Є�v��
+
+==> ./-file04 <==
+%(ڪY,��\3
+
+==> ./-
+file05 <==
+A:���Ei�EO콯,�Ƚ�Js��
+
+==> ./-file06 <==
+�����;vB���(O�Z��?�!CaE6�^_�R
+�
+
+==> ./-file07 <==
+[passwd]
+
+==> ./-file08 <==
+5�DN���'��ڒonY�
+S��`�!��
+
+==> ./-file09 <==
+�tz�w�P�
+$S��tc�puņm\�4tX�
+```
+
+이 값으로 대조했을때 ./-file07이 맞는 답으로 추정된다
+
+## Level 5 -> 6
+`ssh bandit5@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit5@bandit:~$ cd inhere/
+bandit5@bandit:~/inhere$ ls
+maybehere00  maybehere03  maybehere06  maybehere09  maybehere12  maybehere15  maybehere18
+maybehere01  maybehere04  maybehere07  maybehere10  maybehere13  maybehere16  maybehere19
+maybehere02  maybehere05  maybehere08  maybehere11  maybehere14  maybehere17
+bandit5@bandit:~/inhere$ find . -type f -size 1033c ! -executable -exec head -c 1033 {} \;
+[passwd]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                        bandit5@bandit:~/inhere$
+```
+
+이 레벨에서 제공한 조건은 이렇다
+- 사람이 읽을 수 있으면서
+- 크기는 1033 바이트여야만 하고
+- 실행할 수 없어야 즉 +x가 없어야한다
+
+라는 조건인데
+
+`-size 1033c`로 크기가 1033 바이트인 것만 가져오며
+
+`! -executable`로 실행 할 수 없는 파일인지 확인하고
+
+`-exec head -c 1033 {} \;`
+이 명령으로 처음 1033 바이트만 출력하게 함
+
+## Level 6 -> 7
+`ssh bandit6@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
+[passwd]
+```
+이 레벨에서 제공한 조건은 이렇다
+- 사용자 bandit7이 소유함
+- bandit6 그룹 소유
+- 크기는 33바이트
+
+라는 조건인데
+
+## Level 7 -> 8
+`ssh bandit7@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit7@bandit:~$ cat data.txt | grep millionth
+millionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+```
+
+## Level 8 -> 9
+`ssh bandit8@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit8@bandit:~$ cat data.txt | sort | uniq -c
+     10 data0
+     10 data1
+     10 data2
+     10 data3
+     10 data4
+     10 data5
+      1 [passwd]
+...
+```
+
+## Level 9 -> 10
+`ssh bandit9@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit9@bandit:~$ strings data.txt | grep "^=*[[:print:]]"
+...
+========== [passwd]
+...
+```
+
+`grep "^=*[[:print:]]"` : 찾아보니 =으로 시작하고 사람이 읽을 수 있는 것으로 grep을 하고 싶으면 이렇게 쓰면 된다고 한다.
+
+## Level 10 -> 11
+`ssh bandit10@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit10@bandit:~$ cat data.txt | base64 --decode
+The password is [passwd]
+```
+
+## Level 11 -> 12
+`ssh bandit11@bandit.labs.overthewire.org -p 2220`
+
+```bash 
+bandit11@bandit:~$ cat data.txt | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'
+The password is [passwd]
+```
+[위키피디아 Rot13 문서를 보면 이해하기 쉽다.](https://en.wikipedia.org/wiki/Rot13)
+
+## Level 12 -> 13
+`ssh bandit12@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit12@bandit:~$ mktemp -d
+/tmp/tmp.APIhkKxwXA
+bandit12@bandit:~$ cd /tmp/tmp.APIhkKxwXA
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ cp ~/data.txt .
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ xxd -r data.txt data.bin
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ chmod +x decompress.sh
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ ./decompress.sh
+bandit12@bandit:/tmp/tmp.APIhkKxwXA$ cd extracted/
+bandit12@bandit:/tmp/tmp.APIhkKxwXA/extracted$ cat data8.bin
+The password is [passwd]
+```
+
+<details>
+<summary>Decompress.sh</summary>
+
+```js
+#!/bin/bash
+
+input_file="data.bin"
+
+while true; do
+file_type=$(file "$input_file")
+echo "Processing: $file_type"
+
+    if echo "$file_type" | grep -q 'gzip compressed data'; then
+        mv "$input_file" "$input_file.gz"
+        gunzip "$input_file.gz"
+        input_file="${input_file%.gz}"
+        echo "Decompressed with gzip: $input_file"
+    elif echo "$file_type" | grep -q 'bzip2 compressed data'; then
+        mv "$input_file" "$input_file.bz2"
+        bunzip2 "$input_file.bz2"
+        input_file="${input_file%.bz2}"
+        echo "Decompressed with bzip2: $input_file"
+    elif echo "$file_type" | grep -q 'XZ compressed data'; then
+        mv "$input_file" "$input_file.xz"
+        unxz "$input_file.xz"
+        input_file="${input_file%.xz}"
+        echo "Decompressed with xz: $input_file"
+    elif echo "$file_type" | grep -q 'POSIX tar archive'; then
+        # Create a directory to extract tar contents
+        mkdir -p extracted
+        tar -xf "$input_file" -C extracted
+        rm "$input_file"
+        # Assume the next file to process is the first file in the tar archive
+        input_file=$(find extracted -type f | head -1)
+        echo "Extracted tar archive: $input_file"
+    else
+        echo "No more compression detected or unsupported format."
+        break
+    fi
+done
+```
+</details>
+
+## Level 13 -> 14
+`ssh bandit13@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost -p 2220
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+[passwd]
+```
+
+## Level 14 -> 15
+`ssh bandit14@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit14@bandit:~$ nc localhost 30000
+[level 14 passwd]
+Correct!
+[level 15 passwd]
+```
+
+## Level 15 -> 16
+`ssh bandit15@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit15@bandit:~$ ncat --ssl localhost 30001
+[level 15 passwd]
+Correct!
+[level 16 passwd]
+```
+
+특이하게 nc로 하면 작동 안하고 ssl 쓰려면 ncat을 써야하네요.
+
+## Level 16 -> 17
+`ssh bandit16@bandit.labs.overthewire.org -p 2220`
+
+```bash 
+bandit16@bandit:~$ nmap localhost -p 31000-32000
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-07 01:44 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00018s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+bandit16@bandit:~$ ncat --ssl localhost 31790
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+-----END RSA PRIVATE KEY-----
+```
+도저히 nmap으로 정보 얻는건 오래걸려서 그냥 저기 있는 포트 5개 대입해 보니까 접속이 됬다.
+
+## Level 17 -> 18
+`ssh -i bandit17.key bandit17@bandit.labs.overthewire.org -p 2220`
+
+```bash
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+< FtePUTiLiwPzjIFw2T7o57oBS4zUvPpg
+---
+> [passwd]
+```
+
+## Level 17 -> 18
+`ssh bandit18@bandit.labs.overthewire.org -p 2220`
+
+```bash
+ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+[passwd]
+```
+
+
+## Last Update
+2024.07.06에 마지막으로 업데이트 되었으며 bandit9까지 풀이되었습니다.
+2024.07.07에 마지막으로 업데이트 되었으며 bandit18까지 풀이되었습니다.

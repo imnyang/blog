@@ -1,0 +1,100 @@
+---
+import type { MarkdownHeading } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+// Plugin styles
+import '@waline/client/style'
+import 'katex/dist/katex.min.css'
+
+import Comment from '@/pure/components/advanced/Comment.astro'
+import MediumZoom from '@/pure/components/advanced/MediumZoom.astro'
+import ArticleBottom from '@/pure/components/pages/ArticleBottom.astro'
+import Copyright from '@/pure/components/pages/Copyright.astro'
+import Hero from '@/pure/components/pages/Hero.astro'
+import TOC from '@/pure/components/pages/TOC.astro'
+
+import { BackToTop } from 'astro-pure/components/pages'
+import { Button } from 'astro-pure/user'
+import { cn } from 'astro-pure/utils'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import config from '@/site-config'
+
+interface Props {
+  post: CollectionEntry<'blog'>
+  posts: CollectionEntry<'blog'>[]
+  headings: MarkdownHeading[]
+  remarkPluginFrontmatter: Record<string, unknown>
+}
+
+const {
+  post: { id, data },
+  posts,
+  headings,
+  remarkPluginFrontmatter
+} = Astro.props
+
+const {
+  description,
+  heroImage,
+  publishDate,
+  title,
+  updatedDate,
+  draft: isDraft,
+  comment: enableComment
+} = data
+
+const socialImage = heroImage
+  ? typeof heroImage.src === 'string'
+    ? heroImage.src
+    : heroImage.src.src
+  : '/images/social-card.png'
+const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
+const primaryColor = data.heroImage?.color ?? 'hsl(var(--primary) / 0.4)'
+---
+
+<PageLayout
+  meta={{ articleDate, description, ogImage: socialImage, title }}
+  highlightColor={primaryColor}
+>
+  <Button title='뒤로' href='/' style='back' />
+  <main class='mt-6 items-start gap-x-10 md:flex'>
+    {
+      !!headings.length && (
+        <TOC
+          class='animate top-24 min-w-48 basis-60 max-md:hidden md:sticky md:order-2 lg:shrink-0'
+          {headings}
+        />
+      )
+    }
+
+    <article class='min-w-0 grow' data-pagefind-body>
+      <div id='content-header' class='animate'>
+        <Hero {data} {remarkPluginFrontmatter} />
+      </div>
+      <div
+        id='content'
+        class={cn('max-w-none animate mt-8 md:min-w-[45ch]', config.integ.typography.class)}
+      >
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <div class='mt-6 items-start gap-x-10 md:flex'>
+    <div class='mt-8 flex-1 text-muted-foreground md:min-w-[50ch]'>
+      {/* Copyright */}
+      <Copyright {data} />
+      {/* Article recommend */}
+      <ArticleBottom collections={posts} {id} class='mt-3 sm:mt-6' />
+      {/* Comment */}
+      {!isDraft && enableComment && <Comment class='mt-3 sm:mt-6' />}
+    </div>
+    <div class='min-w-48 basis-60'>
+      <slot name='bottom' />
+    </div>
+  </div>
+
+  <BackToTop header='content-header' content='content' />
+</PageLayout>
+
+{config.integ.mediumZoom.enable && <MediumZoom />}
