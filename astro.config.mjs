@@ -30,6 +30,8 @@ import {
 } from './src/plugins/shikiTransformers.ts'
 import config from './src/site.config.ts'
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
@@ -53,19 +55,16 @@ export default defineConfig({
     }
   },
 
-  integrations: [
-    icon(),
-    // astro-pure will automatically add sitemap, mdx & tailwind
-    // sitemap(),
-    // mdx(),
-    // tailwind({ applyBaseStyles: false }),
-    AstroPureIntegration(config)
-    // (await import('@playform/compress')).default({
-    //   SVG: false,
-    //   Exclude: ['index.*.js']
-    // }),
-    // pagefindConfig()
-  ],
+  integrations: [icon(), // astro-pure will automatically add sitemap, mdx & tailwind
+  // sitemap(),
+  // mdx(),
+  // tailwind({ applyBaseStyles: false }),
+  // (await import('@playform/compress')).default({
+  //   SVG: false,
+  //   Exclude: ['index.*.js']
+  // }),
+  // pagefindConfig()
+  AstroPureIntegration(config), sitemap()],
 
   // root: './my-project-directory',
 
