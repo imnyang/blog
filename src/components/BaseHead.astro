@@ -11,7 +11,7 @@ const { articleDate, description, ogImage, title } = Astro.props
 
 const siteTitle = `${title} ${config.titleDelimiter} ${config.title}`
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', Astro.url).href
+//const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', Astro.url).href
 ---
 
 <meta charset='utf-8' />
@@ -52,7 +52,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', As
 <meta content={canonicalURL} property='og:url' />
 <meta content={config.title} property='og:site_name' />
 <meta content={config.locale.attrs} property='og:locale' />
-<meta content={socialImageURL} property='og:image' />
+{/*<meta content={socialImageURL} property='og:image' />*/}
 <meta content='1200' property='og:image:width' />
 <meta content='630' property='og:image:height' />
 {
@@ -69,7 +69,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', As
 <meta content={canonicalURL} property='twitter:url' />
 <meta content={title} property='twitter:title' />
 <meta content={description} property='twitter:description' />
-<meta content={socialImageURL} property='twitter:image' />
+{/* <meta content={socialImageURL} property='twitter:image' /> */}
 
 {/* Sitemap */}
 <link href='/sitemap-index.xml' rel='sitemap' />

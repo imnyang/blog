@@ -19,10 +19,10 @@ type Props = MarkdownLayoutProps<{
 
 const { frontmatter, headings } = Astro.props
 const { title, description, heroImage, language, back } = frontmatter
-const socialImage = heroImage?.src ?? '/images/social-card.png'
+//const socialImage = heroImage?.src ?? '/images/social-card.png'
 ---
 
-<PageLayout meta={{ title, description, ogImage: socialImage }}>
+<PageLayout meta={{ title, description }}>
   <Button title='뒤로' href={back ?? '/'} style='back' />
   <main class='mt-6 items-start gap-x-10 md:flex lg:mt-10'>
     {
