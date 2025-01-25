@@ -92,9 +92,9 @@ const initArxivCard = async (
           value: `
   <a href="${data.url}" target="_blank" class="not-prose block my-4">
             <div
-    class="arxiv-card bg-gray-100 dark:bg-gray-900 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-center items-center [&_*]:!no-underline"
+    class="arxiv-card bg-gray-100 dark:bg-gray-900 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-center items-center **:no-underline!"
   >
-    <div class="flex-grow">
+    <div class="grow">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <h3
           class="text-gray-900 dark:text-white font-bold text-center sm:text-left mt-0 mb-1 text-lg"

@@ -11,9 +11,9 @@ const data = await fetchArxivApi(id)
 
 <a href={data.url} target='_blank' class='not-prose my-4 block'>
   <div
-    class='arxiv-card flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 dark:bg-gray-900 sm:flex-row sm:items-center [&_*]:!no-underline'
+    class='arxiv-card flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 dark:bg-gray-900 sm:flex-row sm:items-center **:no-underline!'
   >
-    <div class='flex-grow'>
+    <div class='grow'>
       <div class='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
         <h3
           class='mb-1 mt-0 text-center text-lg font-bold text-gray-900 dark:text-white sm:text-left'
