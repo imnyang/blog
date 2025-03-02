@@ -1,0 +1,85 @@
+---
+title: 'Proxmox VE APT 미러 서버 구축하기'
+description: Proxmox VE APT 미러 서버를 구축하는 방법을 알아봅니다.
+publishDate: 2025-03-02
+tags:
+  - proxmox
+  - nginx
+---
+
+Proxmox VE를 사용하다보면 업데이트를 받아야 하는 경우가 있습니다. 
+그럴 때마다 Proxmox VE의 공식 미러 서버에서 받아오게 되는데, 이게 진짜 더럽게 느립니다. 
+이럴 때 Proxmox VE APT 미러 서버를 구축하여 빠르게 업데이트를 받을 수 있습니다.
+
+## Proxmox VE APT 미러 서버 구축
+
+Proxmox VE APT 미러 서버를 구축하기 위해서는 apt-mirror 패키지를 사용합니다.
+
+```bash
+sudo apt install apt-mirror
+```
+
+설치가 완료되면 `/etc/apt/mirror.list` 파일을 수정합니다.
+
+
+```bash
+############# config ##################
+#
+set base_path    <원하는 경로>
+set nthreads     <원하는 스레드>
+set _tilde 0
+#
+############# end config ##############
+
+deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+clean http://download.proxmox.com/debian/pve
+```
+
+`원하는 경로`와 다운로드에 쓸 `원하는 스레드`를 입력합니다.
+
+설정이 완료되면 아래와 같이 명령어를 입력합니다.
+
+```bash
+apt-mirror
+```
+
+다운로드가 완료되면 아래와 같이 Nginx를 설치합니다.
+
+```bash
+sudo apt install nginx
+```
+
+설치가 완료되면 Nginx 설정 파일을 수정합니다.
+
+```bash
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root <apt-mirror 설정에서 설정한 위치>/mirror/download.proxmox.com;
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+설정이 완료되면 Nginx를 재시작합니다.
+
+```bash
+sudo systemctl restart nginx
+```
+
+이제 Proxmox VE에서 APT 미러 서버를 사용할 수 있습니다.
+
+```conf
+deb http://<Nginx 서버 주소>/debian/pve bookworm pve-no-subscription
+```
+
+이렇게 하면 Proxmox VE에서 APT 미러 서버를 사용할 수 있습니다.
+
+https://mirror.al-1s.kr/pve
