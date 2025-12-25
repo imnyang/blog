@@ -1,7 +1,9 @@
 ---
 import type { GetStaticPaths, Page } from 'astro'
+import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import PostPreview from '@/pure/components/pages/PostPreview.astro'
+import { Github, Home } from '@lucide/astro'
 
 import { Paginator } from 'astro-pure/components/pages'
 import { getBlogCollection, getUniqueTags, sortMDByDate } from 'astro-pure/server'
@@ -59,7 +61,44 @@ const paginationProps = {
         <div class='grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8'>
           {/* content */}
           <section aria-label='Blog posts list' class='animate' id='content'>
-            <img src="https://f.imnya.ng/profile/banner.CjixG8N2_15mivN.webp" alt="banner" class="rounded-lg h-52 w-full object-cover mb-12" />
+            <img
+              src='https://f.imnya.ng/profile/banner.CjixG8N2_15mivN.webp'
+              alt='banner'
+              class='mb-6 h-52 w-full rounded-lg object-cover'
+            />
+            <div class='mb-6 flex flex-row items-center justify-between'>
+              <div class='flex flex-row gap-2'>
+                <Image
+                  src='/images/imnyang.webp'
+                  alt='imnyang'
+                  class='w-10 rounded-full'
+                  width={40}
+                  height={40}
+                />
+                <div class='flex flex-col gap-0 leading-tight'>
+                  <p>암냥</p>
+                  <p>@imnyang</p>
+                </div>
+              </div>
+              <div class='flex flex-row gap-4'>
+                <a
+                  href='https://imnya.ng'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='Home'
+                >
+                  <Home class='size-6 text-muted-foreground transition-colors hover:text-foreground' />
+                </a>
+                <a
+                  href='https://github.com/imnyang'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='GitHub Profile'
+                >
+                  <Github class='size-6 text-muted-foreground transition-colors hover:text-foreground' />
+                </a>
+              </div>
+            </div>
             {/* header */}
             <div class='mb-3 flex flex-col justify-between text-sm sm:mb-5 sm:flex-row'>
               <span class='text-muted-foreground'>
