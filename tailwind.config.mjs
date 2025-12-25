@@ -124,7 +124,7 @@ const config = {
         sm: 'calc(var(--radius) - 4px)'
       },
       fontFamily: {
-        sans: ['Pretendard', ...fontFamily.sans]
+        sans: ['Wanted Sans Variable', ...fontFamily.sans]
       },
       typography: typographyConfig
     }

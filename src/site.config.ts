@@ -47,6 +47,7 @@ export const theme: ThemeUserConfig = {
 
   header: {
     menu: [
+      { title: "Archives", link: '/archives' }
       //{ title: 'Blog', link: '/' },
       //{ title: 'About', link: '/about' }
     ]

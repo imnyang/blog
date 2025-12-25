@@ -5,12 +5,21 @@
   const container = document.querySelector('#utterances-container')
 
   Object.entries({
-    src: 'https://utteranc.es/client.js',
-    repo: 'imnyang/blog',
-    'issue-term': 'pathname',
-    label: '💖',
-    theme: 'github-dark',
-    crossorigin: 'anonymous'
+    src: "https://giscus.app/client.js",
+    "data-repo": "imnyang/blog",
+    "data-repo-id": "R_kgDONlcMhQ",
+    "data-category": "Comment",
+    "data-category-id": "DIC_kwDONlcMhc4Clssr",
+    "data-mapping": "og:title",
+    "data-strict": "0",
+    "data-reactions-enabled": "1",
+    "data-emit-metadata": "1",
+    "data-input-position": "top",
+    "data-theme": "preferred_color_scheme",
+    "data-lang": "ko",
+    "data-loading": "lazy",
+    crossorigin: "anonymous",
+    async: ""
   }).forEach(([key, value]) => {
     script.setAttribute(key, value)
   })
