@@ -39,7 +39,7 @@ export function vitePluginUserConfig(
       srcDir,
       trailingSlash
     })}`,
-    'virtual:starlight/user-css': opts.customCss.map((id) => `import ${resolveId(id)};`).join(''),
+    'virtual:starlight/user-css': opts.customCss?.map((id) => `import ${resolveId(id)};`).join('') || '',
     'virtual:starlight/user-images': opts.logo
       ? 'src' in opts.logo
         ? `import src from ${resolveId(

@@ -82,8 +82,8 @@ const shares = {
         <Icon class='size-5' name='link' />
       </button>
       {
-        config.content.share.map((share) => (
-          <a href={shares[share].link} target='_blank'>
+        config.content.share.map((share: any) => (
+          <a href={(shares as any)[share].link} target='_blank'>
             <button
               id={`share-${share}`}
               class='group rounded-full bg-muted p-1 text-muted-foreground transition-colors hover:text-primary sm:p-1.5'

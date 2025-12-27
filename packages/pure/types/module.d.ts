@@ -1,4 +1,4 @@
 declare module 'virtual:config' {
-  const Config: import('./user-config').UserConfig
+  const Config: any
   export default Config
 }

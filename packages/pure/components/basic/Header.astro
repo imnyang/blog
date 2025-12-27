@@ -25,7 +25,7 @@ import { Icon } from '../user'
     >
       <div class='flex flex-col items-center justify-center overflow-hidden sm:flex-row'>
         {
-          config.header.menu.map((item) => (
+          config.header.menu.map((item: any) => (
             <a
               href={item.link}
               class='navBtn w-full flex-none grow py-2 text-right font-medium hover:text-primary sm:w-fit sm:px-3'

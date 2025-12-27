@@ -11,8 +11,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 import { remarkAddZoomable } from './plugins/remark-plugins'
 import { vitePluginUserConfig } from './plugins/virtual-user-config'
-import { UserConfigSchema, type UserInputConfig } from './types/user-config'
-import { parseWithFriendlyErrors } from './utils/error-map'
+import type { UserConfig, UserInputConfig } from './types/user-config'
 
 export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegration {
   let integrations: AstroIntegration[] = []
@@ -22,11 +21,14 @@ export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegr
     name: 'astro-pure',
     hooks: {
       'astro:config:setup': async ({ config, updateConfig }) => {
-        let userConfig = parseWithFriendlyErrors(
-          UserConfigSchema,
-          opts,
-          'Invalid config passed to starlight integration'
-        )
+        let userConfig = opts as UserConfig
+
+        // Pagefind only defaults to true if prerender is also true.
+        userConfig.integ.pagefind = userConfig.integ.pagefind ?? userConfig.prerender
+
+        if (userConfig.integ.pagefind && !userConfig.prerender) {
+          throw new Error('Pagefind search is not supported with prerendering disabled.')
+        }
 
         // Add built-in integrations only if they are not already added by the user through the
         // config or by a plugin.

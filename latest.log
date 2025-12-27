@@ -1,0 +1,197 @@
+15:44:38 [WARN] [config] The adapter @astrojs/cloudflare has limited support for "sharp". Certain features may not work as expected.
+15:44:38 [WARN] [adapter] Cloudflare does not support sharp. You can use the `compile` image service to compile images at build time. It will not work for any on-demand rendered images.
+15:44:38 [content] Syncing content
+15:44:38 [content] Synced content
+15:44:38 [types] Generated 264ms
+15:44:38 [check] Getting diagnostics for Astro files in /home/neko/Workspaces/Git/imnyang/blog...
+[96mpackages/pure/index.ts[0m:[93m52[0m:[93m56[0m - [91merror[0m[90m ts(2339): [0mProperty 'content' does not exist on type '{ integ: any; }'.
+
+[7m52[0m             content: { type: 'text', value: userConfig.content.externalLinksContent },
+[7m  [0m [91m                                                       ~~~~~~~[0m
+
+[96mpackages/pure/components/advanced/MediumZoom.astro[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m ts(2339): [0mProperty 'npmCDN' does not exist on type '{ integ: any; }'.
+
+[7m14[0m <script is:inline src={`${config.npmCDN}/medium-zoom/dist/pure/medium-zoom.min.umd.js`}></script>
+[7m  [0m [91m                                 ~~~~~~[0m
+
+[96mpackages/pure/components/advanced/QRCode.astro[0m:[93m9[0m:[93m34[0m - [91merror[0m[90m ts(2339): [0mProperty 'npmCDN' does not exist on type '{ integ: any; }'.
+
+[7m9[0m <script is:inline src={`${config.npmCDN}/qrcodejs/qrcode.min.js`}></script>
+[7m [0m [91m                                 ~~~~~~[0m
+
+[96mpackages/pure/components/basic/Footer.astro[0m:[93m7[0m:[93m27[0m - [91merror[0m[90m ts(2339): [0mProperty 'footer' does not exist on type '{ integ: any; }'.
+
+[7m7[0m const footerConf = config.footer
+[7m [0m [91m                          ~~~~~~[0m
+[96mpackages/pure/components/basic/Footer.astro[0m:[93m4[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'Icon' is declared but its value is never read.
+
+[7m4[0m import { Icon } from '../user'
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mpackages/pure/components/basic/Header.astro[0m:[93m28[0m:[93m35[0m - [91merror[0m[90m ts(7006): [0mParameter 'item' implicitly has an 'any' type.
+
+[7m28[0m           config.header.menu.map((item) => (
+[7m  [0m [91m                                  ~~~~[0m
+[96mpackages/pure/components/basic/Header.astro[0m:[93m28[0m:[93m18[0m - [91merror[0m[90m ts(2339): [0mProperty 'header' does not exist on type '{ integ: any; }'.
+
+[7m28[0m           config.header.menu.map((item) => (
+[7m  [0m [91m                 ~~~~~~[0m
+[96mpackages/pure/components/basic/Header.astro[0m:[93m17[0m:[93m52[0m - [91merror[0m[90m ts(2339): [0mProperty 'title' does not exist on type '{ integ: any; }'.
+
+[7m17[0m     aria-label='Brand'><Icon name='home' />{config.title}</a
+[7m  [0m [91m                                                   ~~~~~[0m
+
+[96mpackages/pure/components/pages/Copyright.astro[0m:[93m86[0m:[93m20[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ readonly weibo: { readonly link: `http://service.weibo.com/share/share.php?url=${string}&title=${string}&pic=${string}`; }; readonly x: { readonly link: `https://x.com/intent/tweet?text='${string}'&url='${string}'&via='${any}'`; }; readonly bluesky: { readonly link: `https://bsky.app/intent/compose?text=${string}%...'.
+
+[7m86[0m           <a href={shares[share].link} target='_blank'>
+[7m  [0m [91m                   ~~~~~~~~~~~~~[0m
+[96mpackages/pure/components/pages/Copyright.astro[0m:[93m85[0m:[93m35[0m - [91merror[0m[90m ts(7006): [0mParameter 'share' implicitly has an 'any' type.
+
+[7m85[0m         config.content.share.map((share) => (
+[7m  [0m [91m                                  ~~~~~[0m
+[96mpackages/pure/components/pages/Copyright.astro[0m:[93m85[0m:[93m16[0m - [91merror[0m[90m ts(2339): [0mProperty 'content' does not exist on type '{ integ: any; }'.
+
+[7m85[0m         config.content.share.map((share) => (
+[7m  [0m [91m               ~~~~~~~[0m
+[96mpackages/pure/components/pages/Copyright.astro[0m:[93m51[0m:[93m78[0m - [91merror[0m[90m ts(2339): [0mProperty 'author' does not exist on type '{ integ: any; }'.
+
+[7m51[0m       <span class='text-sm text-foreground max-sm:place-self-center'>{config.author}</span>
+[7m  [0m [91m                                                                             ~~~~~~[0m
+[96mpackages/pure/components/pages/Copyright.astro[0m:[93m25[0m:[93m88[0m - [91merror[0m[90m ts(2339): [0mProperty 'author' does not exist on type '{ integ: any; }'.
+
+[7m25[0m     link: `https://x.com/intent/tweet?text='${title}'&url='${Astro.url}'&via='${config.author}'`
+[7m  [0m [91m                                                                                       ~~~~~~[0m
+
+[96mpackages/pure/components/pages/PageInfo.astro[0m:[93m6[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'path' is declared but its value is never read.
+
+[7m6[0m const path = Astro.url.pathname
+[7m [0m [93m      ~~~~[0m
+
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m49[0m:[93m18[0m - [91merror[0m[90m ts(2339): [0mProperty 'logo' does not exist on type '{ integ: any; }'.
+
+[7m49[0m             opts.logo.light
+[7m  [0m [91m                 ~~~~[0m
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m48[0m:[93m46[0m - [91merror[0m[90m ts(2339): [0mProperty 'logo' does not exist on type '{ integ: any; }'.
+
+[7m48[0m         : `import dark from ${resolveId(opts.logo.dark)}; import light from ${resolveId(
+[7m  [0m [91m                                             ~~~~[0m
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m46[0m:[93m18[0m - [91merror[0m[90m ts(2339): [0mProperty 'logo' does not exist on type '{ integ: any; }'.
+
+[7m46[0m             opts.logo.src
+[7m  [0m [91m                 ~~~~[0m
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m44[0m:[93m23[0m - [91merror[0m[90m ts(2339): [0mProperty 'logo' does not exist on type '{ integ: any; }'.
+
+[7m44[0m       ? 'src' in opts.logo
+[7m  [0m [91m                      ~~~~[0m
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m43[0m:[93m43[0m - [91merror[0m[90m ts(2339): [0mProperty 'logo' does not exist on type '{ integ: any; }'.
+
+[7m43[0m     'virtual:starlight/user-images': opts.logo
+[7m  [0m [91m                                          ~~~~[0m
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m42[0m:[93m55[0m - [91merror[0m[90m ts(7006): [0mParameter 'id' implicitly has an 'any' type.
+
+[7m42[0m     'virtual:starlight/user-css': opts.customCss.map((id) => `import ${resolveId(id)};`).join(''),
+[7m  [0m [91m                                                      ~~[0m
+[96mpackages/pure/plugins/virtual-user-config.ts[0m:[93m42[0m:[93m40[0m - [91merror[0m[90m ts(2339): [0mProperty 'customCss' does not exist on type '{ integ: any; }'.
+
+[7m42[0m     'virtual:starlight/user-css': opts.customCss.map((id) => `import ${resolveId(id)};`).join(''),
+[7m  [0m [91m                                       ~~~~~~~~~[0m
+
+[96mpackages/pure/types/user-config.ts[0m:[93m26[0m:[93m39[0m - [91merror[0m[90m ts(2344): [0mType 'ZodEffects<ZodEffects<ZodObject<{} & { [x: string]: any; }, any, any, { [x: string]: any; }, { [x: string]: any; }>, { integ: any; }, { [x: string]: any; }>, { integ: any; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+  The types returned by '_refinement(...)' are incompatible between these types.
+
+[7m26[0m export type UserInputConfig = z.input<typeof UserConfigSchema>
+[7m  [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mpackages/pure/types/user-config.ts[0m:[93m25[0m:[93m34[0m - [91merror[0m[90m ts(2344): [0mType 'ZodEffects<ZodEffects<ZodObject<{} & { [x: string]: any; }, any, any, { [x: string]: any; }, { [x: string]: any; }>, { integ: any; }, { [x: string]: any; }>, { integ: any; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+  The types returned by '_refinement(...)' are incompatible between these types.
+
+[7m25[0m export type UserConfig = z.infer<typeof UserConfigSchema>
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mpackages/pure/types/user-config.ts[0m:[93m25[0m:[93m26[0m - [91merror[0m[90m ts(2589): [0mType instantiation is excessively deep and possibly infinite.
+
+[7m25[0m export type UserConfig = z.infer<typeof UserConfigSchema>
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mpackages/pure/types/user-config.ts[0m:[93m21[0m:[93m58[0m - [91merror[0m[90m ts(2339): [0mProperty 'prerender' does not exist on type '{ integ: any; }'.
+
+[7m21[0m   .refine((config) => !(config.integ.pagefind && !config.prerender), {
+[7m  [0m [91m                                                         ~~~~~~~~~[0m
+[96mpackages/pure/types/user-config.ts[0m:[93m9[0m:[93m5[0m - [91merror[0m[90m ts(2589): [0mType instantiation is excessively deep and possibly infinite.
+
+[7m 9[0m     z.object({
+[7m  [0m [91m    ~~~~~~~~~~[0m
+[7m10[0m       integ: IntegrationConfigSchema()
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m11[0m     })
+[7m  [0m [91m~~~~~~[0m
+[96mpackages/pure/types/user-config.ts[0m:[93m9[0m:[93m5[0m - [91merror[0m[90m ts(2345): [0mArgument of type 'ZodObject<ZodRawShape, "strip", ZodTypeAny, { [x: string]: any; }, { [x: string]: any; }>' is not assignable to parameter of type 'AnyZodObject'.
+  Types have separate declarations of a private property '_cached'.
+
+[7m 9[0m     z.object({
+[7m  [0m [91m    ~~~~~~~~~~[0m
+[7m10[0m       integ: IntegrationConfigSchema()
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m11[0m     })
+[7m  [0m [91m~~~~~~[0m
+
+[96mpackages/pure/utils/date.ts[0m:[93m3[0m:[93m77[0m - [91merror[0m[90m ts(2339): [0mProperty 'locale' does not exist on type '{ integ: any; }'.
+
+[7m3[0m const dateFormat = new Intl.DateTimeFormat(config.locale.dateLocale, config.locale.dateOptions)
+[7m [0m [91m                                                                            ~~~~~~[0m
+[96mpackages/pure/utils/date.ts[0m:[93m3[0m:[93m51[0m - [91merror[0m[90m ts(2339): [0mProperty 'locale' does not exist on type '{ integ: any; }'.
+
+[7m3[0m const dateFormat = new Intl.DateTimeFormat(config.locale.dateLocale, config.locale.dateOptions)
+[7m [0m [91m                                                  ~~~~~~[0m
+[96mpackages/pure/utils/date.ts[0m:[93m5[0m:[93m46[0m - [93mwarning[0m[90m ts(6133): [0m'options' is declared but its value is never read.
+
+[7m5[0m export function getFormattedDate(date: Date, options?: Intl.DateTimeFormatOptions) {
+[7m [0m [93m                                             ~~~~~~~[0m
+[96mpackages/pure/utils/date.ts[0m:[93m3[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'dateFormat' is declared but its value is never read.
+
+[7m3[0m const dateFormat = new Intl.DateTimeFormat(config.locale.dateLocale, config.locale.dateOptions)
+[7m [0m [93m      ~~~~~~~~~~[0m
+
+[96msrc/components/BaseHead.astro[0m:[93m10[0m:[93m35[0m - [93mwarning[0m[90m ts(6133): [0m'ogImage' is declared but its value is never read.
+
+[7m10[0m const { articleDate, description, ogImage, title } = Astro.props
+[7m  [0m [93m                                  ~~~~~~~[0m
+
+[96msrc/layouts/CommonPage.astro[0m:[93m3[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'PageInfo' is declared but its value is never read.
+
+[7m3[0m import PageInfo from '@/pure/components/pages/PageInfo.astro'
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/layouts/IndividualPage.astro[0m:[93m21[0m:[93m29[0m - [93mwarning[0m[90m ts(6133): [0m'heroImage' is declared but its value is never read.
+
+[7m21[0m const { title, description, heroImage, language, back } = frontmatter
+[7m  [0m [93m                            ~~~~~~~~~[0m
+
+[96msrc/pages/[...page].astro[0m:[93m98[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'Github' is deprecated.
+
+[7m98[0m                   <Github class='size-6 text-muted-foreground transition-colors hover:text-foreground' />
+[7m  [0m [93m                   ~~~~~~[0m
+[96msrc/pages/[...page].astro[0m:[93m90[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'Home' is deprecated.
+
+[7m90[0m                   <Home class='size-6 text-muted-foreground transition-colors hover:text-foreground' />
+[7m  [0m [93m                   ~~~~[0m
+[96msrc/pages/[...page].astro[0m:[93m6[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'Home' is deprecated.
+
+[7m6[0m import { Github, Home } from '@lucide/astro'
+[7m [0m [93m                 ~~~~[0m
+[96msrc/pages/[...page].astro[0m:[93m6[0m:[93m10[0m - [93mwarning[0m[90m ts(6385): [0m'Github' is deprecated.
+
+[7m6[0m import { Github, Home } from '@lucide/astro'
+[7m [0m [93m         ~~~~~~[0m
+
+[96msrc/pages/rss.xml.ts[0m:[93m68[0m:[93m25[0m - [91merror[0m[90m ts(2339): [0mProperty 'description' does not exist on type '{ integ: any; }'.
+
+[7m68[0m     description: config.description,
+[7m  [0m [91m                        ~~~~~~~~~~~[0m
+[96msrc/pages/rss.xml.ts[0m:[93m67[0m:[93m19[0m - [91merror[0m[90m ts(2339): [0mProperty 'title' does not exist on type '{ integ: any; }'.
+
+[7m67[0m     title: config.title,
+[7m  [0m [91m                  ~~~~~[0m
+
+Result (106 files): 
+- 29 errors
+- 0 warnings
+- 11 hints
+
