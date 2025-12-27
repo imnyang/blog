@@ -42,7 +42,7 @@
   const updateGiscusTheme = () => {
     const newTheme = getGiscusTheme()
     const iframe = container?.querySelector('iframe.giscus-frame')
-    if (iframe) {
+    if (iframe && iframe instanceof HTMLIFrameElement) {
       iframe.contentWindow?.postMessage(
         { giscus: { setConfig: { theme: newTheme } } },
         'https://giscus.app'
