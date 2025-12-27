@@ -4,6 +4,18 @@
   const script = document.createElement('script')
   const container = document.querySelector('#utterances-container')
 
+  // Function to determine Giscus theme
+  const getGiscusTheme = () => {
+    const theme = localStorage.getItem('theme') || 'system'
+    let targetTheme = theme
+    if (theme === 'system') {
+      targetTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    return targetTheme === 'dark' ? 'noborder_dark' : 'noborder_light'
+  }
+
+  const giscusTheme = getGiscusTheme()
+
   Object.entries({
     src: "https://giscus.app/client.js",
     "data-repo": "imnyang/blog",
@@ -15,7 +27,7 @@
     "data-reactions-enabled": "1",
     "data-emit-metadata": "1",
     "data-input-position": "top",
-    "data-theme": "preferred_color_scheme",
+    "data-theme": giscusTheme,
     "data-lang": "ko",
     "data-loading": "lazy",
     crossorigin: "anonymous",
@@ -25,4 +37,30 @@
   })
 
   container?.appendChild(script)
+
+  // Listen for theme changes and update Giscus theme
+  const updateGiscusTheme = () => {
+    const newTheme = getGiscusTheme()
+    const iframe = container?.querySelector('iframe.giscus-frame')
+    if (iframe) {
+      iframe.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme: newTheme } } },
+        'https://giscus.app'
+      )
+    }
+  }
+
+  // Listen for storage changes (theme toggle)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'theme') {
+      updateGiscusTheme()
+    }
+  })
+
+  // Listen for prefers-color-scheme changes if theme is system
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (localStorage.getItem('theme') === 'system') {
+      updateGiscusTheme()
+    }
+  })
 </script>
